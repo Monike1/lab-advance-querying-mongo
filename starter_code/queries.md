@@ -29,14 +29,14 @@ Limit: 10
 Project: { partners: {$exists: false } }
 ### 7. All the companies that have a null type of value on the `category_code` field.
 <!-- Your Code Goes Here -->
-{ category_code: null }
+Filter: { category_code: null }
 ### 8. All the companies that have at least 100 employees but less than 1000. Retrieve only the `name` and `number of employees` fields.
 <!-- Your Code Goes Here -->
 Filter: { number_of_employees: { $lt: 1000, $gte: 100 }}
 Project: { name: 1, number_of_employees: 1}
 ### 9. Order all the companies by their IPO price descendently.
 <!-- Your Code Goes Here -->
-sort: {"ipo.valuation._amount": -1}
+Sort: {"ipo.valuation._amount": -1}
 ### 10. Retrieve the 10 companies with more employees, order by the `number of employees`
 <!-- Your Code Goes Here -->
 Filter: { number_of_employees: { $exists: true} }
@@ -56,7 +56,7 @@ Filter: {founded_year: {$lt: 2000}, "acquisition.price_amount": {$gt: 10000000}}
 db.companies.find({$where:"this.deadpooled_year - this.founded_year > 4"}) -->
 ### 14. All the companies that have been acquired after 2015, order by the acquisition amount, and retrieve only their `name` and `acquisiton` field.
 <!-- Your Code Goes Here -->
-{ "acquisition.acquired_year": {$gt: 2015} }
+Filter: { "acquisition.acquired_year": {$gt: 2015} }
 Project: { name: 1, acquisition: 1}
 Sort: { "acquisition.price_amount": 1}
 ### 15. Order the companies by their `founded year`, retrieving only their `name` and `founded year`.
@@ -82,4 +82,4 @@ Project: { name: 1, acquisition: 1}
 Limit: 10
 ### 20. All the companies that have been founded between 2000 and 2010, but have not been acquired before 2011.
 <!-- Your Code Goes Here -->
-{ founded_year: {$gte: 2000, $lte: 2010 }, "acquisition.acquired_year": {$gte: 2011}}
+Filter: { founded_year: {$gte: 2000, $lte: 2010 }, "acquisition.acquired_year": {$gte: 2011}}
